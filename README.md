@@ -43,7 +43,7 @@ $ doctl auth init
 ```
 output:
 ```bash
-ashok@Ashoks-Mac-mini ~ % doctl auth init
+alok@Aloks-Mac-mini ~ % doctl auth init
 Please authenticate doctl for use with your DigitalOcean account. You can generate a token in the control panel at https://cloud.digitalocean.com/account/api/tokens
 
 Enter your access token:
@@ -56,8 +56,8 @@ doctl kubernetes cluster kubeconfig save <cluster-id>
 ```
 output:
 ```bash
-ashok@Ashoks-Mac-mini ~ % doctl kubernetes cluster kubeconfig save b03b0a9b-1f2d-463e-a020-ea66566e57b2
-Notice: Adding cluster credentials to kubeconfig file found in "/Users/ashok/.kube/config"
+alok@Aloks-Mac-mini ~ % doctl kubernetes cluster kubeconfig save b03b0a9b-1f2d-463e-a020-ea66566e57b2
+Notice: Adding cluster credentials to kubeconfig file found in "/Users/alok/.kube/config"
 Notice: Setting current-context to do-sfo3-k8s-1-21-5-do-0-sfo3-1640244342821
 ```
 and check that the current context is your k8s cluster:
@@ -66,7 +66,7 @@ $ kubectl config current-context
 ```
 output:
 ```bash
-ashok@Ashoks-Mac-mini ~ % kubectl config current-context
+alok@Aloks-Mac-mini ~ % kubectl config current-context
 do-sfo3-k8s-1-21-5-do-0-sfo3-1640244342821
 ```
 ## Setting up MySQL Database and MySQL Operator 
@@ -77,7 +77,7 @@ $ kubectl apply -f https://raw.githubusercontent.com/mysql/mysql-operator/trunk/
 ```
 output:
 ```bash
-ashok@Ashoks-Mac-mini ~ % kubectl apply -f https://raw.githubusercontent.com/mysql/mysql-operator/trunk/deploy/deploy-crds.yaml
+alok@Aloks-Mac-mini ~ % kubectl apply -f https://raw.githubusercontent.com/mysql/mysql-operator/trunk/deploy/deploy-crds.yaml
 customresourcedefinition.apiextensions.k8s.io/innodbclusters.mysql.oracle.com created
 customresourcedefinition.apiextensions.k8s.io/mysqlbackups.mysql.oracle.com created
 customresourcedefinition.apiextensions.k8s.io/clusterkopfpeerings.zalando.org created
@@ -90,7 +90,7 @@ $ kubectl apply -f https://raw.githubusercontent.com/mysql/mysql-operator/trunk/
 ```
 output:
 ```bash
-ashok@Ashoks-Mac-mini ~ % kubectl apply -f https://raw.githubusercontent.com/mysql/mysql-operator/trunk/deploy/deploy-operator.yaml
+alok@Aloks-Mac-mini ~ % kubectl apply -f https://raw.githubusercontent.com/mysql/mysql-operator/trunk/deploy/deploy-operator.yaml
 serviceaccount/mysql-sidecar-sa created
 clusterrole.rbac.authorization.k8s.io/mysql-operator created
 clusterrole.rbac.authorization.k8s.io/mysql-sidecar created
@@ -110,7 +110,7 @@ $ kubectl create secret generic mypwds \
 ```
 output:
 ```bash
-ashok@Ashoks-Mac-mini ~ % kubectl create secret generic mypwds \
+alok@Aloks-Mac-mini ~ % kubectl create secret generic mypwds \
         --from-literal=rootUser=root \
         --from-literal=rootHost=% \
         --from-literal=rootPassword="password123"
@@ -136,13 +136,13 @@ $ kubectl apply -f mysql-cluster.yaml
 ```
 output:
 ```bash
-ashok@Ashoks-Mac-mini ~ % kubectl apply -f mysql-cluster.yaml
+alok@Aloks-Mac-mini ~ % kubectl apply -f mysql-cluster.yaml
 innodbcluster.mysql.oracle.com/mycluster created
 ```
 
 Watch the pods slowly come alive using:
 ```bash
-ashok@Ashoks-Mac-mini ~ % kubectl get innodbcluster --watch
+alok@Aloks-Mac-mini ~ % kubectl get innodbcluster --watch
 
 NAME        STATUS    ONLINE   INSTANCES   ROUTERS   AGE
 mycluster   PENDING   0        3           1         15s
@@ -160,7 +160,7 @@ $ kubectl port-forward service/mycluster mysql
 ```
 output:
 ```bash
-ashok@Ashoks-Mac-mini ~ % kubectl port-forward service/mycluster mysql
+alok@Aloks-Mac-mini ~ % kubectl port-forward service/mycluster mysql
 
 Forwarding from 127.0.0.1:6446 -> 6446
 Forwarding from [::1]:6446 -> 6446
@@ -202,7 +202,7 @@ Query OK, 0 rows affected, 1 warning (0.25 sec)
 ```
 5. Insert a row into this newly created table:
 ```sql
-mysql> INSERT INTO students VALUES (1, "Ashok", "CSE");
+mysql> INSERT INTO students VALUES (1, "Alok", "CSE");
 Query OK, 1 row affected (0.18 sec)
 ```
 6. Get all rows from the table:
@@ -211,7 +211,7 @@ mysql> select * from students;
 +----+-------+------+
 | id | name  | dept |
 +----+-------+------+
-|  1 | Ashok | CSE  |
+|  1 | Alok | CSE  |
 +----+-------+------+
 1 row in set (0.15 sec)
 ```
@@ -232,7 +232,7 @@ $ kubectl delete pod mycluster-0
 ```
 output:
 ```shell
-ashok@Ashoks-Mac-mini ~ % kubectl delete pod mycluster-0
+alok@Aloks-Mac-mini ~ % kubectl delete pod mycluster-0
 pod "mycluster-0" deleted
 ```
 9. Find the pod name for the current connection:
@@ -260,7 +260,7 @@ mysql> select * from students;
 +----+-------+------+
 | id | name  | dept |
 +----+-------+------+
-|  1 | Ashok | CSE  |
+|  1 | Alok | CSE  |
 +----+-------+------+
 1 row in set (0.15 sec)
 ```
@@ -289,13 +289,13 @@ $ kubectl apply -f mysql-cluster.yaml
 ```
 output:
 ```bash
-ashok@Ashoks-Mac-mini Desktop % kubectl apply -f mysql-cluster.yaml.yaml
+alok@Aloks-Mac-mini Desktop % kubectl apply -f mysql-cluster.yaml.yaml
 innodbcluster.mysql.oracle.com/mycluster configured
 ```
 
 and then another instance of it will be created:
 ```bash
-ashok@Ashoks-Mac-mini Desktop % kubectl get innodbcluster --watch
+alok@Aloks-Mac-mini Desktop % kubectl get innodbcluster --watch
 NAME        STATUS   ONLINE   INSTANCES   ROUTERS   AGE
 mycluster   ONLINE   3        4           1         43h
 ```
